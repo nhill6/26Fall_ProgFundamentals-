@@ -1,14 +1,19 @@
-.\sqlite3 studentrecords.db
-CREATE TABLE studentrecords 
-  ( id INTEGER PRIMARY KEY,
+import sqlite3
+conn = sqlite3.connect("studentrecords.db")
+cur = conn.cursor()
+cur.execute("DROP TABLE IF EXISTS studentrecords")
+cur.execute("""
+CREATE TABLE studentrecords ( 
+  id INTEGER PRIMARY KEY,
   name TEXT,
   age INTEGER,
   major TEXT 
-  );
+  )
+  """)
 students = [
-  (1, "Amy", 18, "Poltical Science"),
+  (1, "Amy", 18, "Political Science"),
   (2, "Kennedy", 20, "Engineering"),
-  (3, "Gabby", 19, "Kinesology"),
+  (3, "Gabby", 19, "Kinesiology"),
   (4, "Jaeden", 22, "Psychology"),
   (5, "Julyah", 18, "Nursing")
 ]
@@ -49,8 +54,8 @@ while True:
         break
     else:
         print("Please enter yes or no.")
-  conn.commit()
-  conn.close()
+conn.commit()
+conn.close()
 
 
 
