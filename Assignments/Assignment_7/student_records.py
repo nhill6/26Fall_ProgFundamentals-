@@ -3,12 +3,13 @@ CREATE TABLE studentrecords
   ( id INTEGER PRIMARY KEY,
   name TEXT,
   age INTEGER,
-  major TEXT );
+  major TEXT 
+  );
 students = [
-  (1, "Amy", 18, "Poltical Science")
-  (2, "Kennedy", 20, "Engineering")
-  (3, "Gabby", 19, "Kinesology")
-  (4, "Jaeden", 22, "Psychology")
+  (1, "Amy", 18, "Poltical Science"),
+  (2, "Kennedy", 20, "Engineering"),
+  (3, "Gabby", 19, "Kinesology"),
+  (4, "Jaeden", 22, "Psychology"),
   (5, "Julyah", 18, "Nursing")
 ]
 cursor.executemany(
@@ -26,6 +27,7 @@ while True:
          break
       print("Name cannot be empty.")
   while True:
+    try:
       age = int(input("Enter student's age: "))
       break
     except ValueError:
@@ -35,18 +37,19 @@ while True:
       if major != "":
         break
       print ("Major can not be empty")
-    break
-  elif answer == "no":
-    print("No new student added.")
-  else:
-    print("Please enter yes or no.")
-
   cursor.execute("SELECT MAX(id) FROM studentrecords")
   new_id = cursor.fetchone()[0] + 1
   cursor.execute(
     "INSERT INTO studentrecords (id, name, age, major) VALUES (?, ?, ?, ?)",
     (new_id, name, age, major)
   )
+  break
+elif answer == "no":
+  print("No new student added.")
+else:
+  print("Please enter yes or no.")
+
+  
   conn.commit()
   conn.close()
 
