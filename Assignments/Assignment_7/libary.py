@@ -1,12 +1,16 @@
-./sqlite3 libary.db
-CREATE TABLE books 
-( id WHOLE NUMBER PRIMARY KEY, 
-title TEXT REQUIRED, 
-author TEXT REQUIRED, 
-year WHOLE NUMBER, 
-genre TEXT, 
-copies WHOLE NUMBER, 
-rating WHOLE NUMBER MAY BE EMPTY );
+import sqlite3
+conn = sqlite3.connect("libary.db") 
+cur = conn.cursor()
+cur.execute("DROP TABLE IF EXISTS books")
+cur.execute("""
+  CREATE TABLE books 
+    ( id WHOLE NUMBER PRIMARY KEY, 
+    title TEXT REQUIRED, 
+    author TEXT REQUIRED, 
+    year WHOLE NUMBER, 
+    genre TEXT, 
+    copies WHOLE NUMBER, 
+    rating WHOLE NUMBER MAY BE EMPTY );
 cur.execute("INSERT INTO books VALUES (1, 'Great Gatsby, 'F Scott Fitzgerald', 1925, 'Fiction', 5, 4)")
 books = [
 (2, "To Kill a Mockingbird", "haper Lee", 1960, "Fiction", 3, None),
