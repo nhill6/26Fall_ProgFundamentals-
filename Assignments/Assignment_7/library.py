@@ -42,12 +42,7 @@ print("title of books in either the Science or History genre :")
 for row in cur.execute("SELECT title FROM books WHERE genre IN ('Science', 'History')"):
   print("Title and genre: ", row)
 letter = input("Enter a letter: ")
-cur.execute(
-  "SELECT author from books where author LIKE ?" ,
-  (letter + "%",)
-)
-results = cur.fetchall()
-for row in results:
+for row in cur.execute("SELECT author FROM books WHERE author LIKE ?" , (letter + "%",)):
   print("Author: ", row[0])
 print("title of books that have no rating:")
 for row in cur.execute("SELECT title FROM books WHERE rating IS NULL"):
