@@ -27,29 +27,19 @@ books = [
 ]
 cur.executemany("INSERT INTO books VALUES (?, ?, ?, ?, ?, ?,?)", books)
 print("title and author of books published after 1990:")
-cur.execute("SELECT title, author FROM books WHERE year >= 1990")
-results = cur.fetchall()
-for row in results:
+for row in cur.execute("SELECT title, author FROM books WHERE year >= 1990"):
   print(f"Title:{row[0]}  Author: {row[1]}")
 print("title of fiction books with more than 2 copies:")
-cur.execute("SELECT title FROM books WHERE genre = 'Fiction' AND copies >= 2")
-results = cur.fetchall()
-for row in results:
+for row in cur.execute("SELECT title FROM books WHERE genre = 'Fiction' AND copies >= 2"):
   print("Title: ", row)
 print(" title of books published before 1900 or rated 5:")
-cur.execute("SELECT title FROM books WHERE year < 1900 OR rating = 5")
-results = cur.fetchall()
-for row in results:
+for row in cur.execute("SELECT title FROM books WHERE year < 1900 OR rating = 5"):
   print("Title, year, and/or rating: ", row)
 print("title of books that are not in the Mystery genre:")
-cur.execute("SELECT title FROM books WHERE NOT genre = 'Mystery'")
-results = cur.fetchall()
-for row in results:
+for row in cur.execute("SELECT title FROM books WHERE NOT genre = 'Mystery'"):
   print("Title: ", row)
 print("title of books in either the Science or History genre :")
-cur.execute("SELECT title FROM books WHERE genre IN ('Science', 'History')")
-results = cur.fetchall()
-for row in results:
+for row in cur.execute("SELECT title FROM books WHERE genre IN ('Science', 'History')"):
   print("Title and genre: ", row)
 letter = input("Enter a letter: ")
 cur.execute(
@@ -60,9 +50,7 @@ results = cur.fetchall()
 for row in results:
   print("Author: ", row[0])
 print("title of books that have no rating:")
-cur.execute("SELECT title FROM books WHERE rating IS NULL")
-results = cur.fetchall()
-for row in results:
+for row in cur.execute("SELECT title FROM books WHERE rating IS NULL"):
   print("Title and rating: ", row)
 conn.commit()
 conn.close()
