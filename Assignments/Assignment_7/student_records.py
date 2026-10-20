@@ -5,9 +5,9 @@ cur.execute("DROP TABLE IF EXISTS studentrecords")
 cur.execute("""
 CREATE TABLE studentrecords ( 
   id INTEGER PRIMARY KEY,
-  name TEXT,
+  name VARCHAR(30),
   age INTEGER,
-  major TEXT 
+  major VARCHAR(30) 
   )
   """)
 students = [
@@ -42,9 +42,9 @@ while True:
             if major != "":
                 break
             print("Major cannot be empty")
-        cursor.execute("SELECT MAX(id) FROM studentrecords")
+        cur.execute("SELECT MAX(id) FROM studentrecords")
         new_id = cursor.fetchone()[0] + 1
-        cursor.execute(
+        cur.execute(
             "INSERT INTO studentrecords (id, name, age, major) VALUES (?, ?, ?, ?)",
             (new_id, name, age, major)
         )
