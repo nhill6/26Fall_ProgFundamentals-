@@ -7,8 +7,7 @@ CREATE TABLE studentrecords (
   id INTEGER PRIMARY KEY,
   name VARCHAR(30),
   age INTEGER,
-  major VARCHAR(30) 
-  )
+  major VARCHAR(30) )
   """)
 students = [
   (1, "Amy", 18, "Political Science"),
@@ -17,14 +16,11 @@ students = [
   (4, "Jaeden", 22, "Psychology"),
   (5, "Julyah", 18, "Nursing")
 ]
-cursor.executemany(
-  "INSERT INTO studentrecords (id,name, age, major) VALUES (?, ?, ?, ?)",
-  students
-)
+cursor.executemany("INSERT INTO studentrecords (id,name, age, major) VALUES (?, ?, ?, ?)", students)
 for student in students:
   print(f"Name: {student[1]}, Age: {student[2]}, Major: {student[3]}")
 while True:
-    answer = input("Do you want to add a new student? (yes/no): ").lower()
+    answer = input("Do you want to add a new student? (yes/no): ").lower() 
     if answer == "yes":
         while True:
             name = input("Enter student's name: ")
