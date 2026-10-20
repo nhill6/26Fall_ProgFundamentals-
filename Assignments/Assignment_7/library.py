@@ -5,10 +5,10 @@ cur.execute("DROP TABLE IF EXISTS books")
 cur.execute("""
   CREATE TABLE books (
     id INTEGER PRIMARY KEY, 
-    title TEXT NOT NULL, 
-    author TEXT NOT NULL, 
+    title VARCHAR(30) NOT NULL, 
+    author VARCHAR(30) NOT NULL, 
     year INTEGER, 
-    genre TEXT, 
+    genre VARCHAR(30), 
     copies INTEGER, 
     rating INTEGER
   )
